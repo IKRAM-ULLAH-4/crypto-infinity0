@@ -29,7 +29,7 @@ const MeetTheTeam = () => {
       social: { twitter: '#', linkedin: '#', telegram: 'https://t.me/Cryptoinfinitynews' }
     },
     {
-      name: 'Jane Doe',
+      name: 'Zehra',
       role: 'Head of Growth',
       bio: 'Decade of experience in digital acquisition, specializing in converting exposure into long-term adoption.',
       imageSrc: zehra,
