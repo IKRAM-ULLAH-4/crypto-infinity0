@@ -1,0 +1,115 @@
+/* --- VARIABLES --- */
+:root {
+  --color-bg-deep: #0a0a0a;
+  --color-card-bg: #151515;
+  --color-neon-accent: #00ffc2;
+  --color-step-coral: #FF7F50;
+  --color-text-faded: #A0A0A0;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+/* --- SECTION --- */
+.work-section {
+  background: var(--color-bg-deep);
+  padding: 6rem 0;
+}
+
+/* --- TITLE --- */
+.section-title {
+  font-family: var(--font-heading);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.text-accent { color: var(--color-neon-accent); }
+.section-subtitle { 
+  font-family: var(--font-body); 
+  color: #B0B0B0; 
+}
+
+/* --- STEPS GRID --- */
+.work-steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  position: relative;
+  margin-top: 3rem;
+}
+
+/* Timeline line only on desktop */
+.work-steps-container::before {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, rgba(255,255,255,0.1), var(--color-neon-accent), rgba(255,255,255,0.1));
+  z-index: 1;
+  display: none;
+}
+@media (min-width: 992px) {
+  .work-steps-container::before {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* --- STEP CARD --- */
+.step-card {
+  background: var(--color-card-bg);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  padding: 50px 20px 20px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s ease;
+  height: 100%;
+  z-index: 2;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.7), 0 0 20px var(--color-neon-accent);
+}
+
+/* --- STEP NUMBER --- */
+.step-number-badge {
+  position: absolute;
+  top: -25px;
+  background-color: var(--color-step-coral);
+  color: #000;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.6rem;
+  border: 3px solid var(--color-bg-deep);
+  z-index: 3;
+}
+
+/* --- ICON --- */
+.step-icon {
+  color: var(--color-neon-accent);
+  margin-bottom: 1rem;
+}
+
+/* --- TITLE & DESCRIPTION --- */
+.step-title {
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.step-description {
+  color: var(--color-text-faded);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-align: center;
+}

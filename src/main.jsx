@@ -4,8 +4,10 @@ import './index.css';  // your custom CSS
 import App from './App.jsx';
 
 // Correct Bootstrap imports
-import 'bootstrap/dist/css/bootstrap.min.css'; // Correct CSS import
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Correct JS import
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'animate.css';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import router from './Components/Paths.jsx'
 

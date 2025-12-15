@@ -1,15 +1,23 @@
-import React from 'react';
-// Note: You must install 'react-icons' if you haven't already: npm install react-icons
-import { FaCheckCircle, FaStar } from 'react-icons/fa'; 
-// Note: You must ensure 'bootstrap/dist/css/bootstrap.min.css' is imported somewhere in your project structure.
+import React, { useEffect } from 'react';
+import { FaCheckCircle, FaStar } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AMAPackages = () => {
-  const BG_COLOR = '#0A0A0A';        // Deep Black background
-  const CARD_BG = '#151515';           // Dark card background
-  const CHECK_COLOR = '#00FFFF';       // Electric Cyan for checkmarks and accent
-  const POPULAR_ACCENT = '#FF7F50';    // Vibrant Orange/Coral for the Popular badge
-  const CTA_COLOR_START = '#00FFC2';   // Cyan/Green for Popular CTA
-  const CTA_COLOR_END = '#0080FF';     // Bright Blue for Popular CTA
+  const BG_COLOR = '#0A0A0A';
+  const CARD_BG = '#151515';
+  const CHECK_COLOR = '#00FFFF';
+  const POPULAR_ACCENT = '#FF7F50';
+  const CTA_COLOR_START = '#00FFC2';
+  const CTA_COLOR_END = '#0080FF';
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+    });
+  }, []);
 
   const packages = [
     {
@@ -29,7 +37,7 @@ const AMAPackages = () => {
       buttonStyle: {
         background: `linear-gradient(45deg, ${CTA_COLOR_START}, ${CTA_COLOR_END})`,
         border: 'none',
-        color: '#000', // Black text looks better on bright gradient
+        color: '#000',
       },
       buttonHoverStyle: {
         transform: 'scale(1.03)',
@@ -45,7 +53,7 @@ const AMAPackages = () => {
         background: CARD_BG,
         color: '#fff',
         border: '1px solid #444',
-        boxShadow: '0 0 10px rgba(0, 128, 255, 0.2)', 
+        boxShadow: '0 0 10px rgba(0, 128, 255, 0.2)',
       }
     },
   ];
@@ -58,11 +66,10 @@ const AMAPackages = () => {
     '$50 Rewards for community',
   ];
 
-  // Helper component for the Book Now Button
   const BookNowButton = ({ pkg }) => {
     const defaultStyle = {
       transition: 'all 0.3s ease-in-out',
-      borderRadius: '50px', // Use rounded pill style
+      borderRadius: '50px',
       padding: '12px 0',
       width: '100%',
       fontWeight: '700',
@@ -70,18 +77,17 @@ const AMAPackages = () => {
       ...pkg.buttonStyle,
     };
 
-    // Define hover styles for non-popular buttons
     const nonPopularHoverStyle = {
-        background: '#333', // Darken on hover
-        transform: 'translateY(-2px)',
-        color: CHECK_COLOR, // Change text color to accent color
+      background: '#333',
+      transform: 'translateY(-2px)',
+      color: CHECK_COLOR,
     };
 
     const hoverStyle = pkg.isPopular ? pkg.buttonHoverStyle : nonPopularHoverStyle;
 
     return (
       <a
-        href="#start" // Link to the Secure Slot Form
+        href="#start"
         className={`btn mt-4 ${pkg.isPopular ? 'text-black' : 'text-white'}`}
         style={defaultStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, hoverStyle)}
@@ -91,7 +97,6 @@ const AMAPackages = () => {
       </a>
     );
   };
-
 
   return (
     <section
@@ -109,31 +114,39 @@ const AMAPackages = () => {
           className="text-center fw-bolder mb-5"
           style={{
             color: '#fff',
-            fontSize: 'clamp(2rem, 3vw + 0.5rem, 3rem)', // Responsive font size
+            fontSize: 'clamp(2rem, 3vw + 0.5rem, 3rem)',
             letterSpacing: '2px',
           }}
+          data-aos="fade-down"
         >
           Our <span style={{ color: CHECK_COLOR }}>AMA</span> Packages
         </h2>
 
         <div className="row justify-content-center g-4">
           {packages.map((pkg, index) => (
-            <div key={index} className="col-lg-4 col-md-6">
+            <div
+              key={index}
+              className="col-lg-4 col-md-6"
+              data-aos="zoom-in"
+              data-aos-delay={index * 150}
+            >
               <div
                 className="card h-100 p-4 border-0 text-white"
                 style={{
                   backgroundColor: CARD_BG,
                   borderRadius: '15px',
-                  boxShadow: pkg.isPopular ? `0 0 30px ${CTA_COLOR_START}44` : '0 0 20px rgba(0, 0, 0, 0.3)',
+                  boxShadow: pkg.isPopular
+                    ? `0 0 30px ${CTA_COLOR_START}44`
+                    : '0 0 20px rgba(0, 0, 0, 0.3)',
                   border: pkg.isPopular ? `2px solid ${POPULAR_ACCENT}88` : '1px solid #333',
                   transition: 'all 0.3s ease',
-                  transform: pkg.isPopular ? 'scale(1.02)' : 'scale(1)', // Slightly elevate popular card
+                  transform: pkg.isPopular ? 'scale(1.02)' : 'scale(1)',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
               >
                 {pkg.isPopular && (
-                  <span 
+                  <span
                     className="position-absolute px-3 py-1 fw-bold rounded-pill"
                     style={{
                       top: '15px',
@@ -144,6 +157,11 @@ const AMAPackages = () => {
                       display: 'flex',
                       alignItems: 'center',
                       textTransform: 'uppercase',
+                      opacity: 0,
+                      transform: 'scale(0.8)',
+                      animation: 'fadeScaleIn 0.5s forwards',
+                      animationDelay: `${index * 0.15 + 0.3}s`,
+                      pointerEvents: 'none',
                     }}
                   >
                     <FaStar size={10} className="me-1" /> Popular
@@ -156,26 +174,38 @@ const AMAPackages = () => {
                 <h1 className="fw-bolder my-3" style={{ fontSize: '3rem', color: CHECK_COLOR }}>
                   {pkg.price}
                 </h1>
-                
+
                 <hr style={{ borderColor: '#333', marginBottom: '20px' }} />
 
-                {/* Features List */}
                 <ul className="list-unstyled flex-grow-1">
                   {features.map((feature, idx) => (
-                    <li key={idx} className="d-flex align-items-start mb-3" style={{ fontSize: '0.95rem', color: '#E0E0E0' }}>
+                    <li
+                      key={idx}
+                      className="d-flex align-items-start mb-3"
+                      style={{ fontSize: '0.95rem', color: '#E0E0E0' }}
+                    >
                       <FaCheckCircle size={16} color={CHECK_COLOR} className="me-3 mt-1 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                {/* Book Now Button */}
                 <BookNowButton pkg={pkg} />
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Keyframes for Popular badge fadeScaleIn animation */}
+      <style>{`
+        @keyframes fadeScaleIn {
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
     </section>
   );
 };

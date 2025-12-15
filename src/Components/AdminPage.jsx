@@ -1,34 +1,46 @@
-import React from 'react';
-import { FaLinkedinIn, FaTwitter, FaTelegramPlane } from 'react-icons/fa'; // Icons for professional outreach
-import irfan from '../assets/irfan.jpeg'
-import zehra from '../assets/zehra.jpeg'
-import logo from '../assets/logo.jpeg'
+import React, { useEffect } from 'react';
+import { FaLinkedinIn, FaTwitter, FaTelegramPlane } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import irfan from '../assets/irfan.jpeg';
+import zehra from '../assets/zehra.jpeg';
+import logo from '../assets/logo.jpeg';
+
 const MeetTheTeam = () => {
   const ICON_COLOR = '#00FFFF'; // Electric Cyan
   const ROLE_COLOR = '#FF7F50'; // Vibrant Orange/Coral
+  const BIO_COLOR = '#E0E0E0';  // Lighter gray for bio readability
 
-  // Data for the team members
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+    });
+  }, []);
+
   const teamMembers = [
     {
       name: 'Irfan Xareen',
       role: 'Founder & CEO',
       bio: 'Visionary leader, expert in market entry strategy, and dedicated blockchain community architect.',
-      imageSrc: `${irfan}`, // Placeholder path
-      social: { twitter: '#', linkedin: '#', telegram: ' t.me/Cryptoinfinitynews' }
+      imageSrc: irfan,
+      social: { twitter: '#', linkedin: '#', telegram: 'https://t.me/Cryptoinfinitynews' }
     },
     {
       name: 'Jane Doe',
       role: 'Head of Growth',
       bio: 'Decade of experience in digital acquisition, specializing in converting exposure into long-term adoption.',
-      imageSrc: `${zehra}`, // Placeholder path
-      social: { twitter: '#', linkedin: '#', telegram: ' t.me/Cryptoinfinitynews' }
+      imageSrc: zehra,
+      social: { twitter: '#', linkedin: '#', telegram: 'https://t.me/Cryptoinfinitynews' }
     },
     {
       name: 'Alex Chen',
       role: 'Lead Community Strategist',
       bio: 'Manages a global network of KOLs and partners, ensuring authentic engagement and outreach across all platforms.',
-      imageSrc: `${logo}`, // Placeholder path
-      social: { twitter: '#', linkedin: '#', telegram: ' t.me/Cryptoinfinitynews' }
+      imageSrc: logo,
+      social: { twitter: '#', linkedin: '#', telegram: 'https://t.me/Cryptoinfinitynews' }
     },
   ];
 
@@ -51,7 +63,7 @@ const MeetTheTeam = () => {
       id="admin"
       className="py-5"
       style={{
-        background: '#0A0A0A', // Deep dark background
+        background: '#0A0A0A',
         paddingTop: '6rem',
         paddingBottom: '6rem',
         color: '#fff',
@@ -67,26 +79,46 @@ const MeetTheTeam = () => {
             letterSpacing: '3px',
             textTransform: 'uppercase',
           }}
+          data-aos="fade-down"
         >
           Meet The <span style={{ color: ICON_COLOR }}>Leadership</span>
         </h2>
-        <p className="lead mb-5" style={{ color: '#B0B0B0' }}>
+        <p 
+          className="lead mb-5" 
+          style={{ color: '#B0B0B0' }}
+          data-aos="fade-down"
+          data-aos-delay="150"
+        >
             Trusted expertise and proven execution drive our agency. Meet the team behind your success.
         </p>
         
         <div className="row justify-content-center g-5">
           {teamMembers.map((member, index) => (
-            <div key={index} className="col-lg-4 col-md-6">
+            <div 
+              key={index} 
+              className="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+            >
               <div 
-                className="p-4" 
+                className="p-4 team-card"
                 style={{
                   backgroundColor: '#151515',
                   borderRadius: '20px',
                   boxShadow: '0 0 30px rgba(0, 0, 0, 0.5)',
-                  border: `1px solid ${ROLE_COLOR}33`
+                  border: `1px solid ${ROLE_COLOR}33`,
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  cursor: 'default',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 0 50px rgba(0, 255, 255, 0.4)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 0, 0.5)';
                 }}
               >
-                {/* Profile Image */}
                 <img
                   src={member.imageSrc}
                   alt={member.name}
@@ -95,11 +127,10 @@ const MeetTheTeam = () => {
                   height="180"
                   style={{ 
                     objectFit: 'cover',
-                    border: `5px solid ${ICON_COLOR}55` // Border for prominence
+                    border: `5px solid ${ICON_COLOR}55`,
                   }}
                 />
                 
-                {/* Name and Role */}
                 <h4 className="fw-bolder mb-1" style={{ color: '#fff', fontSize: '1.8rem' }}>
                   {member.name}
                 </h4>
@@ -107,12 +138,10 @@ const MeetTheTeam = () => {
                   {member.role}
                 </p>
                 
-                {/* Bio */}
-                <p className="text-muted" style={{ fontSize: '1rem', color: '#A0A0A0' }}>
+                <p className="mb-0" style={{ fontSize: '1rem', color: BIO_COLOR, lineHeight: '1.6' }}>
                   {member.bio}
                 </p>
 
-                {/* Social Links */}
                 <div className="mt-4">
                   <SocialLink icon={FaTwitter} href={member.social.twitter} color="#1DA1F2" />
                   <SocialLink icon={FaLinkedinIn} href={member.social.linkedin} color="#0077B5" />
