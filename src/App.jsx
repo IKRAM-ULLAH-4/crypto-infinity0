@@ -11,13 +11,13 @@ const App = () => {
     <div>
       <Navbar />
       <HeroSection />
-      
       <ProblemSolutionSection />
       <HowWeWork />
       <AboutUs />
       <AmaPkgs />
       <AdminPage />
       <Footer />
+      
     </div>
   );
 };
