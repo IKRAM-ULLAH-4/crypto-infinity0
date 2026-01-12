@@ -1,0 +1,66 @@
+.promotions-section {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #00ffc2;
+  text-shadow: 0 0 8px #00ffc2;
+}
+
+.promo-card {
+  background: #111;
+  border-radius: 12px;
+  margin: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 255, 194, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.promo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 40px rgba(0, 255, 194, 0.7);
+}
+
+.promo-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.promo-content {
+  padding: 1rem;
+  text-align: center;
+}
+
+.promo-content h5 {
+  font-size: 1.3rem;
+  color: #00ffc2;
+  margin-bottom: 0.5rem;
+}
+
+.promo-content p {
+  font-size: 0.95rem;
+  color: #c0c0c0;
+  margin-bottom: 1rem;
+}
+
+.btn-promo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(45deg, #00ffc2, #0080ff);
+  color: #0a0a0a;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-promo:hover {
+  background: linear-gradient(45deg, #0080ff, #00ffc2);
+  color: #ffffff;   
+}

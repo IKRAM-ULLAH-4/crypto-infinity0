@@ -6,11 +6,13 @@ import HowWeWork from "./Components/HowWeWork";
 import Navbar from "./Components/Navbar";
 import ProblemSolutionSection from "./Components/ProblemSolutionSection";
 import AmaPkgs from './Components/AmaPkgs'
+import PromotionsCarousel from "./Components/PromoCarousal";
 const App = () => {
   return (
     <div>
       <Navbar />
       <HeroSection />
+      {/* <PromotionsCarousel /> */}
       <ProblemSolutionSection />
       <HowWeWork />
       <AboutUs />
