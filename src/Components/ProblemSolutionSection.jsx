@@ -51,7 +51,7 @@ const ProblemSolutionSection = () => {
 
   return (
     <section 
-      id="problem-solution" 
+      id="process" 
       style={sectionPaddingStyle}
     >
       {/* Radial Background */}

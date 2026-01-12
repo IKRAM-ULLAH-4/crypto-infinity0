@@ -29,7 +29,7 @@ const HowWeWork = () => {
   ];
 
   return (
-    <section id="how-we-work" className="work-section">
+    <section id="strategy" className="work-section">
       <div className="container text-center">
         <h2 className="display-4 fw-bold section-title" data-aos="fade-down">
           Our <span className="text-accent">3-Step</span> Growth Framework
