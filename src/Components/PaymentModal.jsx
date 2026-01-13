@@ -109,20 +109,24 @@ const PaymentModal = ({ show, onHide, pkg }) => {
               <div className="modal-footer-area w-100">
                 {!account ? (
                   <>
+                
+ 
+                     <p className="">Verified BEP-20 Gateway</p>
+
                     {walletAvailable ? (
-                      <button className="primary-wallet-btn w-100 mb-2" onClick={connectWallet}>
+                      <a className="primary-wallet-btn w-100 mb-2" onClick={connectWallet} style={{textDecoration:"none"}}>
                         <FaWallet className="me-2" /> Connect Wallet
-                      </button>
+                      </a>
                     ) : (
-                      <a href="https://metamask.io/download/" target="_blank" className="primary-wallet-btn w-100">
+                      <a href="https://metamask.io/download/" target="_blank" className="primary-wallet-btn w-100" style={{textDecoration:"none"}}>
                         Install MetaMask
                       </a>
                     )}
                   </>
                 ) : (
-                  <button className="primary-wallet-btn w-100" disabled={loading} onClick={handlePayment}>
+                  <a className="primary-wallet-btn w-100" disabled={loading} onClick={handlePayment} style={{textDecoration:"none"}}>
                     {loading ? <><FaSpinner className="fa-spin me-2" /> Processing...</> : 'Confirm & Pay'}
-                  </button>
+                  </a>
                 )}
               </div>
             </>
