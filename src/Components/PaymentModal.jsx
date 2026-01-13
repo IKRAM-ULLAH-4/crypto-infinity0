@@ -76,12 +76,11 @@ const PaymentModal = ({ show, onHide, pkg }) => {
 
   return (
     <Modal show={show} onHide={onHide} centered backdrop="static" contentClassName="wallet-modal">
+           {/* ❌ Close Button */}
+           <a href="#close" onClick={(e) => { e.preventDefault(); onHide(); }} className="close-modal-icon" disabled={loading}>
+             <FaTimes size={20} />
+          </a>
       <Modal.Body className="p-4 p-md-5 position-relative">
-        
-        {/* ❌ Close Button */}
-        <button onClick={onHide} className="close-modal-icon" disabled={loading}>
-          <FaTimes size={20} />
-        </button>
 
         <div className="modal-stack">
           {!txHash ? (
@@ -107,22 +106,29 @@ const PaymentModal = ({ show, onHide, pkg }) => {
                 </div>
               )}
 
-              {/* Action Button */}
-              <div className="w-100">
-                {!account ? (
-                  <button className="primary-wallet-btn" onClick={connectWallet}>
-                    <FaWallet className="me-2" /> Connect Wallet
-                  </button>
-                ) : (
-                  <button className="primary-wallet-btn" disabled={loading} onClick={handlePayment}>
-                    {loading ? <><FaSpinner className="fa-spin me-2" /> Processing...</> : 'Confirm & Pay'}
-                  </button>
-                )}
-              </div>
-
-              {/* Simplified Footer */}
+              {/* Footer Area with A tags below Note */}
               <div className="modal-footer-area">
                 <p className="footer-note">Verified BEP-20 Gateway</p>
+                <div className="action-button-container w-100">
+                  {!account ? (
+                    <a 
+                    style={{textDecoration:"none"}}
+                      href="#connect" 
+                      className="primary-wallet-btn"
+                      onClick={(e) => { e.preventDefault(); connectWallet(); }}
+                    >
+                      <FaWallet className="me-2" /> Connect Wallet
+                    </a>
+                  ) : (
+                    <a 
+                      href="#pay" 
+                      className="primary-wallet-btn"
+                      onClick={(e) => { e.preventDefault(); !loading && handlePayment(); }}
+                    >
+                      {loading ? <><FaSpinner className="fa-spin me-2" /> Processing...</> : 'Confirm & Pay'}
+                    </a>
+                  )}
+                </div>
               </div>
             </>
           ) : (
@@ -135,18 +141,24 @@ const PaymentModal = ({ show, onHide, pkg }) => {
               <div className="bg-black p-3 rounded border border-secondary text-start w-100 mb-2">
                 <small className="text-muted d-block">Transaction Hash</small>
                 <code className="text-info small d-block mb-2">{txHash.slice(0, 32)}...</code>
-                <a href={`https://bscscan.com/tx/${txHash}`} target="_blank" rel="noreferrer" className="text-white-50 small text-decoration-none">
+                <a 
+                  href={`https://bscscan.com/tx/${txHash}`} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="text-white-50 small text-decoration-none"
+                >
                    View on BscScan <FaExternalLinkAlt size={10} />
                 </a>
               </div>
 
-              <button className="book-btn w-100" onClick={onHide}>
+              <a href="#finish" className="book-btn w-100" onClick={(e) => { e.preventDefault(); onHide(); }}>
                 Finish
-              </button>
+              </a>
             </div>
           )}
         </div>
       </Modal.Body>
+      
     </Modal>
   );
 };
