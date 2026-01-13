@@ -12,7 +12,7 @@ import {
 import './ama.css';
 
 const USDT_CONTRACT = '0x55d398326f99059fF775485246999027B3197955';
-const RECEIVER_ADDRESS = '0xYourWalletAddressHere'; // 🔴 REPLACE THIS
+const RECEIVER_ADDRESS = '0xf0824584eAE1944493c29d96467737C3eF738D05'; // 🔴 REPLACE THIS
 const BSC_CHAIN_ID = 56;
 
 const PaymentModal = ({ show, onHide, pkg }) => {
