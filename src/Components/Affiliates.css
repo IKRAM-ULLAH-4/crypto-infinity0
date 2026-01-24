@@ -1,0 +1,113 @@
+.affiliates {
+  background: #0b0b0f;
+  padding: 100px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.affiliates h2 {
+  color: #ffffff;
+  font-size: 36px;
+  margin-bottom: 60px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(0, 255, 213, 0.3); /* Themed glow */
+}
+
+/* Gradient fade on the edges so it looks premium */
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 40px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+/* Bigger, Brighter Partner Cards */
+.partner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px;
+  padding: 30px 20px;
+  min-width: 180px; /* Wider for bigger logos */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 213, 0.1); /* Subtle theme border */
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.partner:hover {
+  background: rgba(0, 255, 213, 0.08);
+  border-color: #00ffd5;
+  transform: translateY(-12px);
+  box-shadow: 0 10px 30px rgba(0, 255, 213, 0.2); /* Neon glow on hover */
+}
+
+.partner img {
+  height: 70px; /* Made logos much bigger */
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); /* Helps logos pop on dark bg */
+}
+
+.partner:hover img {
+  transform: scale(1.1);
+}
+
+.partner span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #00ffd5; /* Reverted to your primary theme color */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Animations - Slightly slower for better readability of big logos */
+.left .track {
+  animation: scrollLeft 35s linear infinite;
+}
+
+.right .track {
+  animation: scrollRight 35s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* Responsive fixes */
+@media screen and (max-width: 768px) {
+  .partner {
+    min-width: 140px;
+    padding: 20px 10px;
+  }
+  .partner img {
+    height: 50px;
+  }
+  .partner span {
+    font-size: 11px;
+  }
+}
