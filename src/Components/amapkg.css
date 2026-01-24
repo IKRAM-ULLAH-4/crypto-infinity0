@@ -1,0 +1,144 @@
+ .ama-package-section {
+  background: #0b0b0f;
+  padding: 100px 0;
+  color: #fff;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.top-tag {
+  color: #00FFFF;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.highlight {
+  color: #00FFFF;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.accent-bar {
+  width: 60px;
+  height: 4px;
+  background: #00FFFF;
+  margin: 15px auto;
+  border-radius: 10px;
+}
+
+/* Card Styling */
+.package-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 35px 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.package-card:hover {
+  transform: translateY(-12px);
+  border-color: #00FFFF;
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1);
+}
+
+/* Highlight the Partnership Tier */
+.partnership-tier {
+  background: linear-gradient(145deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.package-icon {
+  font-size: 40px;
+  color: #00FFFF;
+  margin-bottom: 20px;
+}
+
+.package-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.package-desc {
+  color: #a0a0a0;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.price-container {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.currency {
+  font-size: 24px;
+  color: #00FFFF;
+  font-weight: 700;
+}
+
+.amount {
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.check-icon {
+  color: #00FFFF;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.book-now-btn {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  border: 1px solid #00FFFF;
+  color: #00FFFF;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.book-now-btn:hover {
+  background: #00FFFF;
+  color: #0b0b0f;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+/* Badges */
+.popular-ribbon, .value-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #00FFFF;
+  color: #0b0b0f;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 20px;
+}

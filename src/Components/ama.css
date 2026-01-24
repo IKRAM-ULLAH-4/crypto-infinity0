@@ -1,213 +1,202 @@
-/* ===============================
-   AMA SECTION & CARDS
-================================ */
-#ama-packages {
-  background-color: #0a0a0a;
-  color: #ffffff;
-}
-
-.popular-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: linear-gradient(45deg, #ff7f50, #ffb347);
-  color: #000;
-  font-weight: 800;
-  font-size: 0.7rem;
-  padding: 6px 14px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  z-index: 2;
-}
-
-.book-btn {
-  background: linear-gradient(90deg, #00ffc2, #0080ff);
-  border: none;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 14px;
-  border-radius: 50px;
-  color: #000 !important;
-  letter-spacing: 1px;
-  transition: 0.3s ease;
-  width: 100%;
-}
-
-.book-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 255, 194, 0.3);
-}
-
-/* ===============================
-   WALLET MODAL (DAPP STYLE)
-================================ */
-.wallet-modal {
-  background: #0f0f0f !important;
-  border-radius: 28px !important;
-  border: 1px solid #222 !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
-}
-
-.close-modal-icon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  color: #555;
-  transition: 0.2s;
-  z-index: 10;
-}
-
-.close-modal-icon:hover {
-  color: #ff4d4d;
-}
-
-.modal-stack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px; 
-  width: 100%;
-}
-
-.price-box {
-  width: 100%;
-  background: #151515;
-  border: 1px solid #00ffff1a;
-  border-radius: 20px;
-  padding: 24px;
-  text-align: center;
-}
-
-.price-box span {
-  font-size: 0.75rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.price-box h2 {
-  margin: 8px 0 0;
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: #00ffff;
-}
-
-.price-box h2 small {
-  font-size: 1rem;
-  color: #444;
-}
-
-.wallet-status-badge {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #00ffc2;
-  padding: 8px 18px;
-  border-radius: 50px;
-  font-family: 'monospace';
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dot-pulse {
-  width: 8px;
-  height: 8px;
-  background: #00ffc2;
-  border-radius: 50%;
-  animation: pulse-glow 1.5s infinite;
-}
-
-@keyframes pulse-glow {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.5; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* FOOTER STYLING */
-.modal-footer-area {
-  width: 100%;
-  text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #222;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.footer-note {
-  font-size: 0.65rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #444;
-  margin: 0 0 15px 0;
-  display: block;
-}
-
-.action-button-container {
-  width: 100%;
-}
-
-.primary-wallet-btn {
-  width: 100%;
-  background: linear-gradient(90deg, #00ffc2, #0080ff);
-  border: none;
-  border-radius: 16px;
-  padding: 16px;
-  font-weight: 800;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  color: #000;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.primary-wallet-btn:hover:not(:disabled) {
-  transform: scale(1.02);
-  filter: brightness(1.1);
-}
-/* ===============================
-   WALLET MODAL – FINAL FIX
-================================ */
-
-.wallet-modal {
-  max-width: 420px;
-}
-
-/* Modal body full height */
-.wallet-modal-body {
-  height: 560px;              /* 👈 IMPORTANT */
-  display: flex;
-  flex-direction: column;
-  padding: 28px;
-}
-
-/* Main stack */
-.modal-stack {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+/* --- BASE SECTION --- */
+.ama-package-section {
+  background: #0b0b0f;
+  padding: 100px 0;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
   overflow: hidden;
 }
 
-/* Scrollable content area */
-.modal-content-area {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-  padding-bottom: 16px;
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-/* Footer stays at bottom */
-.modal-footer-area {
-  flex-shrink: 0;
-  margin-top: auto;
-  padding-top: 18px;
-  border-top: 1px solid #222;
+.highlight {
+  color: #00FFFF;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.accent-bar {
+  width: 60px;
+  height: 4px;
+  background: #00FFFF;
+  margin: 15px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* --- 3D SCROLL CONTAINER (MOBILE & TABLET) --- */
+.packages-3d-wrapper {
+  perspective: 1500px; /* Depth for the 3D effect */
+  width: 100%;
+  padding: 20px 0;
+}
+
+.packages-scroll-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 50px 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.packages-scroll-track::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+/* --- THE 3D CARD MODEL --- */
+.package-card-3d {
+  flex: 0 0 300px; /* Fixed width for the scroll snap */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: center;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  
+  /* Initial 3D Tilt for side cards */
+  transform: rotateY(15deg) scale(0.9);
+  opacity: 0.5;
+}
+
+/* Active/Center Card Focus */
+.package-card-3d:hover, 
+.package-card-3d:active,
+.package-card-3d:focus {
+  opacity: 1;
+  transform: rotateY(0deg) scale(1.05);
+  border-color: #00FFFF;
+  background: rgba(0, 255, 255, 0.04);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+/* --- DESKTOP GRID (OVERRIDE 3D ON LARGE SCREENS) --- */
+@media screen and (min-width: 1200px) {
+  .packages-scroll-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    overflow: visible;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .package-card-3d {
+    flex: unset;
+    transform: none !important; /* Remove 3D tilt for clean grid */
+    opacity: 1;
+  }
+  
+  .package-card-3d:hover {
+    transform: translateY(-15px) !important;
+  }
+}
+
+/* --- CARD CONTENT --- */
+.package-icon {
+  font-size: 42px;
+  color: #00FFFF;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.3));
+}
+
+.package-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.price-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 25px;
+}
+
+.currency {
+  font-size: 22px;
+  color: #00FFFF;
+  font-weight: 700;
+}
+
+.amount {
+  font-size: 44px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 35px;
+  flex-grow: 1;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.check-icon {
+  color: #00FFFF;
+  font-size: 14px;
+}
+
+/* --- ACTION BUTTON --- */
+.book-now-btn {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  border: 1px solid #00FFFF;
+  color: #00FFFF;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.book-now-btn:hover {
+  background: #00FFFF;
+  color: #0b0b0f;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* --- SPECIAL TIERS --- */
+.partnership-tier {
+  background: linear-gradient(145deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.popular-ribbon, .value-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #00FFFF;
+  color: #0b0b0f;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 5;
+}
+
+/* Mobile Smaller Screen Fixes */
+@media screen and (max-width: 480px) {
+  .package-card-3d {
+    flex: 0 0 260px;
+    padding: 25px 20px;
+  }
+  .amount {
+    font-size: 34px;
+  }
 }

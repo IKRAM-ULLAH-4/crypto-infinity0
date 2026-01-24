@@ -1,7 +1,7 @@
 import React from "react";
 import "./Affiliates.css";
 
-// Note: I'm using the exact names from your screenshot
+// Precise imports based on your file explorer
 import binanceLogo from "../assets/logos/Binanacelogo.png";
 import bybitLogo from "../assets/logos/bybitlogo.png";
 import coingeckoLogo from "../assets/logos/Coingeckologo.png";
@@ -9,12 +9,6 @@ import coinmarketcapLogo from "../assets/logos/coinmarketcap.png";
 import kucoinLogo from "../assets/logos/kucoinlogo.png";
 import okxLogo from "../assets/logos/okxlogo.png";
 import web3Logo from "../assets/logos/web3logo.png";
-
-const getLogo = (localPath, name) => {
-  if (localPath) return localPath;
-  // If local is missing, we use a clear SVG/PNG source from the web
-  return `https://img.logo.dev/${name.toLowerCase().replace(/\s/g, '')}.com?token=pk_abc123`; // Mock token, falls back to clearbit-style logic
-};
 
 const topPartners = [
   { name: "Binance", logo: binanceLogo },
@@ -37,16 +31,16 @@ const bottomPartners = [
 ];
 
 export default function Affiliates() {
+  const getLogo = (localPath, name) => {
+    if (localPath) return localPath;
+    return `https://icons.duckduckgo.com/ip3/${name.toLowerCase().replace(/\s/g, '')}.com.ico`;
+  };
+
   const renderTrack = (partners) => (
     <div className="track">
-      {/* Duplicating for infinite scroll smoothness */}
       {[...partners, ...partners].map((item, i) => (
         <div key={i} className="partner">
-          <img 
-            src={getLogo(item.logo, item.name)} 
-            alt={item.name} 
-            onError={(e) => { e.target.src = "https://cdn-icons-png.flaticon.com/512/2091/2091665.png" }}
-          />
+          <img src={getLogo(item.logo, item.name)} alt={item.name} />
           <span>{item.name}</span>
         </div>
       ))}
@@ -56,14 +50,8 @@ export default function Affiliates() {
   return (
     <section className="affiliates">
       <h2>Trusted Partners</h2>
-
-      <div className="marquee left">
-        {renderTrack(topPartners)}
-      </div>
-
-      <div className="marquee right">
-        {renderTrack(bottomPartners)}
-      </div>
+      <div className="marquee left">{renderTrack(topPartners)}</div>
+      <div className="marquee right">{renderTrack(bottomPartners)}</div>
     </section>
   );
 }

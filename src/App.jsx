@@ -8,7 +8,7 @@ import ProblemSolutionSection from "./Components/ProblemSolutionSection";
 import AmaPkgs from './Components/AmaPkgs'
 import Affiliates from "./Components/Affiliates";
 import PromotionsCarousel from "./Components/PromoCarousal";
-import AMA from "./Components/AMAs";
+import AMA from "./Components/Partnerships";
 
 const App = () => {
   return (
