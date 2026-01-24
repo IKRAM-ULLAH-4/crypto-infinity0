@@ -20,38 +20,47 @@ const PaymentModal = ({ show, onHide, pkg }) => {
   const [loading, setLoading] = useState(false);
   const [txHash, setTxHash] = useState(null);
   const [walletAvailable, setWalletAvailable] = useState(false);
+  const [provider, setProvider] = useState(null);
 
   useEffect(() => {
-    // Check if browser wallet is available
+    // Detect if any browser wallet exists
     setWalletAvailable(!!window.ethereum);
+
     if (!show) {
       setAccount(null);
       setTxHash(null);
       setLoading(false);
+      setProvider(null);
     }
   }, [show]);
 
   const connectWallet = async () => {
     try {
       if (!window.ethereum) {
-        alert("No wallet detected. Please install MetaMask or use WalletConnect!");
+        alert("No wallet detected. Please install MetaMask or a compatible wallet.");
         return;
       }
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      setAccount(accounts[0]);
+
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const web3Provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await web3Provider.getSigner();
+      const userAddress = await signer.getAddress();
+
+      setAccount(userAddress);
+      setProvider(web3Provider);
+
     } catch (err) {
-      console.error('Connection rejected');
+      console.error("Wallet connection failed:", err);
+      alert("Wallet connection failed. Please try again.");
     }
   };
 
   const handlePayment = async () => {
-    if (!account) return alert("Connect your wallet first!");
+    if (!account || !provider) return alert("Connect your wallet first!");
     try {
       setLoading(true);
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const network = await provider.getNetwork();
 
-      // Switch to BSC if not connected
+      const network = await provider.getNetwork();
       if (Number(network.chainId) !== BSC_CHAIN_ID) {
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
@@ -70,7 +79,9 @@ const PaymentModal = ({ show, onHide, pkg }) => {
       const tx = await contract.transfer(RECEIVER_ADDRESS, amount);
       const receipt = await tx.wait();
       setTxHash(receipt.hash);
+
     } catch (err) {
+      console.error(err);
       alert('Payment failed. Ensure you have enough USDT and BNB for gas.');
     } finally {
       setLoading(false);
@@ -105,14 +116,10 @@ const PaymentModal = ({ show, onHide, pkg }) => {
                 </div>
               )}
 
-              {/* Action Buttons */}
               <div className="modal-footer-area w-100">
                 {!account ? (
                   <>
-                
- 
-                     <p className="">Verified BEP-20 Gateway</p>
-
+                    <p className="">Verified BEP-20 Gateway</p>
                     {walletAvailable ? (
                       <a className="primary-wallet-btn w-100 mb-2" onClick={connectWallet} style={{textDecoration:"none"}}>
                         <FaWallet className="me-2" /> Connect Wallet
@@ -131,7 +138,6 @@ const PaymentModal = ({ show, onHide, pkg }) => {
               </div>
             </>
           ) : (
-            /* SUCCESS STATE */
             <div className="modal-stack text-center">
               <FaCheckCircle size={64} color="#00ffc2" className="mb-2" />
               <h2 className="fw-bold text-white">Payment Successful</h2>
