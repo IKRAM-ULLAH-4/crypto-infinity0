@@ -1,124 +1,202 @@
-import React, { useEffect } from 'react';
-import { FaUsers, FaTrophy, FaRocket } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import AOS styles
+import React, { useEffect } from "react";
+import { FaUsers, FaTrophy, FaRocket } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useTheme } from "../Context/ThemeContext";
 
 const AboutUs = () => {
-  const ICON_COLOR = '#00FFFF'; // Electric Cyan
-  const ACCENT_COLOR = '#FF7F50'; // Vibrant Orange/Coral
+  const { bg } = useTheme();
 
   useEffect(() => {
     AOS.init({
       duration: 900,
-      easing: 'ease-out-cubic',
-      once: true, // Animate only once on scroll
+      easing: "ease-out-cubic",
+      once: true,
     });
   }, []);
 
-  const statCardStyle = {
-    backgroundColor: '#1E2833',
-    borderRadius: '10px',
-    padding: '20px',
-    boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-    height: '100%',
+  const sectionStyle = {
+    background: bg ? "#070b14" : "#f6f8fc",
+    color: bg ? "#fff" : "#111",
+    padding: "90px 0",
+    position: "relative",
+    overflow: "hidden",
+  };
+
+  const gradientText = {
+    background: "linear-gradient(135deg,#00F5A0,#00D9F5)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  };
+
+  const accentOrange = "#ff6b6b";
+
+  const cardBase = {
+    borderRadius: "18px",
+    padding: "20px",
+    display: "flex",
+    alignItems: "center",
+    gap: "16px",
+    backdropFilter: "blur(14px)",
+    transition: "0.3s ease",
+  };
+
+  const statCard = {
+    ...cardBase,
+    background: bg
+      ? "rgba(255,255,255,0.06)"
+      : "#ffffff",
+    border: bg
+      ? "1px solid rgba(255,255,255,0.08)"
+      : "1px solid rgba(0,0,0,0.06)",
+    boxShadow: bg
+      ? "0 20px 40px rgba(0,0,0,0.35)"
+      : "0 15px 30px rgba(0,0,0,0.08)",
+  };
+
+  const iconBox = (color) => ({
+    width: "50px",
+    height: "50px",
+    borderRadius: "14px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: color,
+    color: "#000",
+    flexShrink: 0,
+  });
+
+  const textMuted = {
+    color: bg ? "rgba(255,255,255,0.65)" : "#666",
+  };
+
+  const titleStyle = {
+    fontSize: "2.5rem",
+    fontWeight: "800",
   };
 
   return (
-    <section
-      id="about-us"
-      className="py-5"
-      style={{
-        background: '#0A0A0A',
-        paddingTop: '6rem',
-        paddingBottom: '6rem',
-        color: '#fff',
-      }}
-    >
-      <div className="container px-3 px-md-5">
-        {/* Title Section */}
-        <h2
-          className="display-4 mb-3 fw-bold text-center"
-          style={{
-            fontFamily: 'Poppins, sans-serif',
-            letterSpacing: '3px',
-            textTransform: 'uppercase',
-          }}
-          data-aos="fade-down"
-        >
-          The <span style={{ color: ICON_COLOR }}>Authority</span> & The Mission
-        </h2>
-        <p
-          className="lead mb-5 text-center"
-          style={{ color: '#B0B0B0', maxWidth: '700px', margin: '0 auto' }}
-          data-aos="fade-up"
-          data-aos-delay="150"
-        >
-          We don't just run campaigns—we build essential trust and drive verifiable results in the Web3 space.
-        </p>
+    <section id="about-us" style={sectionStyle}>
 
-        <div className="row align-items-center gy-4">
-          {/* Left Column: Mission & Narrative */}
-          <div className="col-12 col-lg-7" data-aos="fade-right" data-aos-delay="300">
-            <h3 className="fw-bold mb-4" style={{ color: ACCENT_COLOR, fontSize: '2rem' }}>
-              Our Unmatched Crypto Marketing Edge
+      {/* BACKGROUND GLOW */}
+      <div
+        style={{
+          position: "absolute",
+          width: "600px",
+          height: "600px",
+          background: "rgba(0,245,160,0.12)",
+          filter: "blur(120px)",
+          top: "20%",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      />
+
+      <div className="container position-relative">
+
+        {/* TITLE */}
+        <div className="text-center mb-5" data-aos="fade-down">
+
+          <h2 style={titleStyle}>
+            The{" "}
+            <span style={gradientText}>Authority</span> & Mission
+          </h2>
+
+          <p
+            style={{
+              maxWidth: "700px",
+              margin: "12px auto",
+              ...textMuted,
+            }}
+          >
+            We don’t run campaigns — we build authority, trust, and real crypto adoption systems.
+          </p>
+
+        </div>
+
+        <div className="row g-5 align-items-center">
+
+          {/* LEFT CONTENT */}
+          <div className="col-12 col-lg-7" data-aos="fade-right">
+
+            <h3
+              className="fw-bold mb-4"
+              style={{ color: accentOrange }}
+            >
+              Our Crypto Marketing Edge
             </h3>
-            <p className="mb-4" style={{ fontSize: '1.15rem', lineHeight: '1.8', color: '#E0E0E0' }}>
-              We are a dedicated team of blockchain evangelists and marketing specialists who have been successfully navigating the crypto landscape for years. Our foundation is built on trust, verifiable engagement, and deep industry connections.
+
+            <p style={{ fontSize: "1.1rem", ...textMuted, lineHeight: "1.8" }}>
+              We are a performance-driven Web3 growth team focused on real investor exposure,
+              not fake engagement or inflated metrics.
             </p>
-            <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: '#E0E0E0' }}>
-              We eliminate the middlemen and the bots, connecting you directly with active investors and decision-makers across platforms like Binance Live, X, and Telegram. When you partner with us, you secure a proven, results-driven launch strategy.
+
+            <p style={{ fontSize: "1.1rem", ...textMuted, lineHeight: "1.8" }}>
+              Through verified networks across Binance Live, X Spaces, and Telegram ecosystems,
+              we deliver sustainable visibility and trust for crypto projects.
             </p>
+
           </div>
 
-          {/* Right Column: Key Statistics/Metrics */}
+          {/* RIGHT STATS */}
           <div className="col-12 col-lg-5">
-            <div className="row g-3">
-              {/* Stat 1: Community Size */}
-              <div className="col-12" data-aos="zoom-in" data-aos-delay="400">
-                <div style={statCardStyle} className="d-flex align-items-center">
-                  <FaUsers size={40} color={ICON_COLOR} className="me-4 flex-shrink-0" />
-                  <div>
-                    <h4 className="mb-0 fw-bolder" style={{ color: ICON_COLOR, fontSize: '1.8rem' }}>
-                      140K+
-                    </h4>
-                    <p className="mb-0 text-uppercase" style={{ fontSize: '0.9rem', color: '#A0A0A0' }}>
-                      Verified Community Reach
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Stat 2: Projects Launched */}
-              <div className="col-12" data-aos="zoom-in" data-aos-delay="550">
-                <div style={statCardStyle} className="d-flex align-items-center">
-                  <FaRocket size={40} color={ACCENT_COLOR} className="me-4 flex-shrink-0" />
-                  <div>
-                    <h4 className="mb-0 fw-bolder" style={{ color: ACCENT_COLOR, fontSize: '1.8rem' }}>
-                      850+
-                    </h4>
-                    <p className="mb-0 text-uppercase" style={{ fontSize: '0.9rem', color: '#A0A0A0' }}>
-                      Successful Projects Launched
-                    </p>
-                  </div>
+            {/* STAT 1 */}
+            <div className="mb-3" data-aos="zoom-in" data-aos-delay="200">
+              <div style={statCard}>
+                <div style={iconBox("rgba(0,245,160,0.15)")}>
+                  <FaUsers />
                 </div>
-              </div>
 
-              {/* Stat 3: Years Experience */}
-              <div className="col-12" data-aos="zoom-in" data-aos-delay="700">
-                <div style={statCardStyle} className="d-flex align-items-center">
-                  <FaTrophy size={40} color="#E0E0E0" className="me-4 flex-shrink-0" />
-                  <div>
-                    <h4 className="mb-0 fw-bolder" style={{ color: '#E0E0E0', fontSize: '1.8rem' }}>
-                      5+ Years
-                    </h4>
-                    <p className="mb-0 text-uppercase" style={{ fontSize: '0.9rem', color: '#A0A0A0' }}>
-                      Dedicated Crypto Marketing Experience
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="fw-bold mb-0" style={{ color: "#00F5A0" }}>
+                    140K+
+                  </h3>
+                  <small style={textMuted}>
+                    Verified Community Reach
+                  </small>
                 </div>
               </div>
             </div>
+
+            {/* STAT 2 */}
+            <div className="mb-3" data-aos="zoom-in" data-aos-delay="350">
+              <div style={statCard}>
+                <div style={iconBox("rgba(255,107,107,0.15)")}>
+                  <FaRocket />
+                </div>
+
+                <div>
+                  <h3 className="fw-bold mb-0" style={{ color: accentOrange }}>
+                    850+
+                  </h3>
+                  <small style={textMuted}>
+                    Successful Project Launches
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            {/* STAT 3 */}
+            <div data-aos="zoom-in" data-aos-delay="500">
+              <div style={statCard}>
+                <div style={iconBox("rgba(255,255,255,0.15)")}>
+                  <FaTrophy />
+                </div>
+
+                <div>
+                  <h3 className="fw-bold mb-0" style={{ color: "#fff" }}>
+                    5+ Years
+                  </h3>
+                  <small style={textMuted}>
+                    Industry Experience
+                  </small>
+                </div>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </div>
     </section>

@@ -1,127 +1,156 @@
-import React, { useEffect } from 'react';
-import { FaTelegramPlane } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect } from "react";
+import { FaTelegramPlane } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useTheme } from "../Context/ThemeContext";
 
-import irfan from '../assets/irfan.jpeg';
-import zehra from '../assets/zehra.jpeg';
-import logo from '../assets/logo.jpeg';
+import irfan from "../assets/irfan.jpeg";
+import zehra from "../assets/zehra.jpeg";
 
 const MeetTheTeam = () => {
-  const ICON_COLOR = '#00FFFF'; // Telegram neon color
-  const ROLE_COLOR = '#FF7F50'; // Orange/Coral for role
-  const BIO_COLOR = '#E0E0E0';  // Light gray for bio
+  const { bg } = useTheme();
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-out-cubic',
-      once: true,
-    });
+    AOS.init({ duration: 800, once: true });
   }, []);
 
   const teamMembers = [
     {
-      name: 'Irfan Zareen',
-      role: 'Founder & CEO',
-      bio: 'Visionary leader, expert in market entry strategy, and dedicated blockchain community architect.',
-      imageSrc: irfan,
-      telegram: 'https://t.me/IrfanZareen'
+      name: "Irfan Zareen",
+      role: "Founder & CEO",
+      bio: "Architect of Web3 growth systems and crypto marketing strategist.",
+      image: irfan,
+      telegram: "https://t.me/IrfanZareen",
     },
     {
-      name: 'Zehra',
-      role: 'Head of Growth',
-      bio: 'Decade of experience in digital acquisition, specializing in converting exposure into long-term adoption.',
-      imageSrc: zehra,
-      telegram: 'https://t.me/RealZehra'
+      name: "Zehra",
+      role: "Head of Growth",
+      bio: "Specialist in user acquisition, conversion funnels, and community scaling.",
+      image: zehra,
+      telegram: "https://t.me/RealZehra",
     },
-    // {
-    //   name: 'Alex Chen',
-    //   role: 'Lead Community Strategist',
-    //   bio: 'Manages a global network of KOLs and partners, ensuring authentic engagement and outreach across all platforms.',
-    //   imageSrc: logo,
-    //   telegram: 'https://t.me/Cryptoinfinitynews'
-    // },
   ];
 
-  const TelegramLink = ({ href }) => (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-white mx-2"
-      style={{ transition: 'color 0.3s ease' }}
-      onMouseOver={(e) => { e.currentTarget.style.color = ICON_COLOR; }}
-      onMouseOut={(e) => { e.currentTarget.style.color = '#fff'; }}
-    >
-      <FaTelegramPlane size={20} />
-    </a>
-  );
+  const sectionStyle = {
+    background: bg ? "#070b14" : "#f6f8fc",
+    color: bg ? "#fff" : "#111",
+    padding: "90px 0",
+    transition: "0.3s ease",
+  };
+
+  const gradientText = {
+    background: "linear-gradient(135deg,#00F5A0,#00D9F5)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  };
+
+  const card = {
+    background: bg ? "rgba(255,255,255,0.06)" : "#fff",
+    border: bg
+      ? "1px solid rgba(255,255,255,0.08)"
+      : "1px solid rgba(0,0,0,0.06)",
+    borderRadius: "22px",
+    padding: "26px",
+    textAlign: "center",
+    transition: "0.3s ease",
+    backdropFilter: "blur(14px)",
+    boxShadow: bg
+      ? "0 25px 50px rgba(0,0,0,0.35)"
+      : "0 20px 40px rgba(0,0,0,0.08)",
+  };
+
+  const avatar = {
+    width: "140px",
+    height: "140px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    border: "3px solid #00F5A0",
+    marginBottom: "15px",
+  };
+
+  const roleStyle = {
+    color: "#00F5A0",
+    fontWeight: "600",
+    fontSize: "1rem",
+  };
+
+  const bioStyle = {
+    color: bg ? "rgba(255,255,255,0.65)" : "#666",
+    fontSize: "0.95rem",
+    lineHeight: "1.6",
+  };
+
+  const telegramBtn = {
+    marginTop: "18px",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "10px 16px",
+    borderRadius: "12px",
+    background: "linear-gradient(135deg,#00F5A0,#00D9F5)",
+    color: "#000",
+    fontWeight: "600",
+    textDecoration: "none",
+  };
 
   return (
-    <section
-      id="admin"
-      className="py-5"
-      style={{ background: '#0A0A0A', paddingTop: '6rem', paddingBottom: '6rem', color: '#fff' }}
-    >
-      <div className="container text-center">
-        {/* Title */}
-        <h2
-          className="display-4 mb-3 fw-bold text-white"
-          style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '3px', textTransform: 'uppercase' }}
-          data-aos="fade-down"
-        >
-          Meet The <span style={{ color: ICON_COLOR }}>Leadership</span>
-        </h2>
-        <p className="lead mb-5" style={{ color: '#B0B0B0' }} data-aos="fade-down" data-aos-delay="150">
-          Trusted expertise and proven execution drive our agency. Meet the team behind your success.
-        </p>
+    <section id="admin" style={sectionStyle}>
+      <div className="container">
 
-        <div className="row justify-content-center g-5">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay={index * 150}>
+        {/* HEADER */}
+        <div className="text-center mb-5" data-aos="fade-down">
+          <h2 style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+            Meet the{" "}
+            <span style={gradientText}>Leadership</span>
+          </h2>
+
+          <p style={{ color: bg ? "rgba(255,255,255,0.6)" : "#666" }}>
+            The execution team behind Crypto Infinity’s growth engine.
+          </p>
+        </div>
+
+        {/* GRID */}
+        <div className="row g-4 justify-content-center">
+          {teamMembers.map((m, i) => (
+            <div
+              key={i}
+              className="col-12 col-md-6 col-lg-4"
+              data-aos="fade-up"
+              data-aos-delay={i * 150}
+            >
               <div
-                className="p-4 team-card"
-                style={{
-                  backgroundColor: '#151515',
-                  borderRadius: '20px',
-                  boxShadow: '0 0 30px rgba(0, 0, 0, 0.5)',
-                  border: `1px solid ${ROLE_COLOR}33`,
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  cursor: 'default',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 0 50px rgba(0, 255, 255, 0.4)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 0, 0.5)';
-                }}
+                style={card}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-6px)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "translateY(0)")
+                }
               >
-                <img
-                  src={member.imageSrc}
-                  alt={member.name}
-                  className="rounded-circle mb-4"
-                  width="180"
-                  height="180"
-                  style={{ objectFit: 'cover', border: `5px solid ${ICON_COLOR}55` }}
-                />
+                {/* IMAGE */}
+                <img src={m.image} alt={m.name} style={avatar} />
 
-                <h4 className="fw-bolder mb-1" style={{ color: '#fff', fontSize: '1.8rem' }}>
-                  {member.name}
+                {/* NAME */}
+                <h4 className="fw-bold" style={{ color: bg ? "#fff" : "#111" }}>
+                  {m.name}
                 </h4>
-                <p className="lead fw-semibold mb-3" style={{ color: ROLE_COLOR, fontSize: '1.1rem' }}>
-                  {member.role}
-                </p>
 
-                <p className="mb-0" style={{ fontSize: '1rem', color: BIO_COLOR, lineHeight: '1.6' }}>
-                  {member.bio}
-                </p>
+                {/* ROLE */}
+                <p style={roleStyle}>{m.role}</p>
 
-                <div className="mt-4">
-                  <TelegramLink href={member.telegram} />
-                </div>
+                {/* BIO */}
+                <p style={bioStyle}>{m.bio}</p>
+
+                {/* TELEGRAM */}
+                <a
+                  href={m.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={telegramBtn}
+                >
+                  <FaTelegramPlane />
+                  Connect
+                </a>
               </div>
             </div>
           ))}

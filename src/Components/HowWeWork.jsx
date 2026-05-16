@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
-import { FaRegLightbulb, FaBullhorn, FaChartLine } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import './HowWeWork.css';
+import React, { useEffect } from "react";
+import { FaRegLightbulb, FaBullhorn, FaChartLine } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useTheme } from "../Context/ThemeContext";
 
 const HowWeWork = () => {
-  useEffect(() => { 
-    AOS.init({ duration: 1000, easing: 'ease-in-out', once: true }); 
+  const { bg } = useTheme();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      easing: "ease-in-out",
+      once: true,
+    });
   }, []);
 
   const steps = [
@@ -14,51 +20,155 @@ const HowWeWork = () => {
       number: "01",
       icon: FaRegLightbulb,
       title: "Strategic Alignment",
-      description: "We dive deep into your project's tokenomics and roadmap to craft a high-conversion AMA and content strategy."
+      description:
+        "We analyze tokenomics, roadmap, and audience to build a high-conversion growth strategy.",
     },
     {
       number: "02",
       icon: FaBullhorn,
-      title: "High-Velocity Promotion",
-      description: "Immediate outreach leveraging our verified community across Binance Live, X, and Telegram for maximum exposure."
+      title: "High-Impact Distribution",
+      description:
+        "We push your project across verified crypto channels for maximum real investor exposure.",
     },
     {
       number: "03",
       icon: FaChartLine,
-      title: "Optimization & Authority",
-      description: "We track engagement and convert AMA content into durable assets like blogs and shorts for sustained growth."
-    }
+      title: "Authority Scaling",
+      description:
+        "We turn campaigns into long-term assets like shorts, blogs, and community-driven content.",
+    },
   ];
 
+  const sectionStyle = {
+    background: bg ? "#070b14" : "#f6f8fc",
+    transition: "0.3s ease",
+    padding: "90px 0",
+    position: "relative",
+    overflow: "hidden",
+  };
+
+  const titleStyle = {
+    color: bg ? "#fff" : "#111",
+    fontSize: "2.4rem",
+    fontWeight: "800",
+  };
+
+  const gradientText = {
+    background: "linear-gradient(135deg,#00F5A0,#00D9F5)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  };
+
+  const cardStyle = {
+    background: bg
+      ? "rgba(255,255,255,0.06)"
+      : "#ffffff",
+    border: bg
+      ? "1px solid rgba(255,255,255,0.08)"
+      : "1px solid rgba(0,0,0,0.06)",
+    borderRadius: "22px",
+    padding: "28px",
+    height: "100%",
+    backdropFilter: "blur(14px)",
+    transition: "0.3s ease",
+    boxShadow: bg
+      ? "0 20px 40px rgba(0,0,0,0.35)"
+      : "0 15px 30px rgba(0,0,0,0.08)",
+  };
+
+  const iconBox = {
+    width: "55px",
+    height: "55px",
+    borderRadius: "14px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "linear-gradient(135deg,#00F5A0,#00D9F5)",
+    color: "#000",
+    flexShrink: 0,
+  };
+
+  const numberStyle = {
+    fontSize: "1.2rem",
+    fontWeight: "700",
+    color: bg ? "rgba(255,255,255,0.5)" : "#888",
+  };
+
+  const textPrimary = {
+    color: bg ? "#fff" : "#111",
+  };
+
+  const textMuted = {
+    color: bg ? "rgba(255,255,255,0.65)" : "#666",
+  };
+
   return (
-    <section id="strategy" className="work-section">
-      <div className="container text-center">
-        <div className="section-header" data-aos="fade-down">
-          <span className="top-tag">Process</span>
-          <h2 className="display-4 fw-bold">
-            Our <span className="highlight">3-Step</span> Growth Framework
+    <section id="strategy" style={sectionStyle}>
+
+      {/* BACKGROUND GLOW */}
+      <div
+        style={{
+          position: "absolute",
+          width: "500px",
+          height: "500px",
+          background: "rgba(0,245,160,0.10)",
+          filter: "blur(120px)",
+          top: "20%",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      />
+
+      <div className="container position-relative">
+
+        {/* HEADER */}
+        <div className="text-center mb-5" data-aos="fade-down">
+          <h2 style={titleStyle}>
+            Our{" "}
+            <span style={gradientText}>3-Step</span> Growth System
           </h2>
-          <div className="accent-bar"></div>
-          <p className="header-subtitle">
-            A proven, performance-driven system designed to maximize community acquisition and trust.
+
+          <p
+            style={{
+              maxWidth: "650px",
+              margin: "10px auto",
+              ...textMuted,
+            }}
+          >
+            A performance-driven framework designed for real crypto growth, not hype.
           </p>
         </div>
 
-        <div className="work-steps-container">
+        {/* STEPS */}
+        <div className="row g-4">
           {steps.map((step, index) => {
             const Icon = step.icon;
+
             return (
-              <div key={index} className="step-card" data-aos="fade-up" data-aos-delay={index * 200}>
-                <div className="card-inner-glow"></div>
-                <div className="step-header">
-                  <span className="step-number">{step.number}</span>
-                  <div className="icon-box">
-                    <Icon size={40} />
+              <div
+                key={index}
+                className="col-12 col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+              >
+                <div style={cardStyle} className="h-100">
+
+                  {/* HEADER */}
+                  <div className="d-flex align-items-center justify-content-between mb-3">
+                    <span style={numberStyle}>{step.number}</span>
+
+                    <div style={iconBox}>
+                      <Icon size={24} />
+                    </div>
                   </div>
-                </div>
-                <div className="step-content">
-                  <h4 className="step-title">{step.title}</h4>
-                  <p className="step-description">{step.description}</p>
+
+                  {/* CONTENT */}
+                  <h5 className="fw-bold mb-2" style={textPrimary}>
+                    {step.title}
+                  </h5>
+
+                  <p style={textMuted}>{step.description}</p>
+
                 </div>
               </div>
             );

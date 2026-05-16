@@ -10,14 +10,11 @@ import 'animate.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import router from './Components/Paths.jsx'
+import { routes } from './Routes/routes.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 
-    <RouterProvider router={router}>
-
-  
     <App />
-      </RouterProvider>
   </StrictMode> // Fixed the closing tag
 );
