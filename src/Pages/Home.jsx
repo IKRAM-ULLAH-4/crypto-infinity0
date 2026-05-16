@@ -7,7 +7,6 @@ import HowWeWork from "../Components/HowWeWork";
 import Navbar from "../Components/Navbar";
 import ProblemSolutionSection from "../Components/ProblemSolutionSection";
 import AmaPkgs from '../Components/AmaPkgs'
-import Affiliates from "../Components/Affiliates";
 import PromotionsCarousel from "../Components/PromoCarousal";
 import AMA from "../Components/Partnerships";
 function Home() {
