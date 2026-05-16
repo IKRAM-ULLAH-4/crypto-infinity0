@@ -19,8 +19,8 @@ function Home() {
       <HeroSection />
       <AMA />
       {/* <Affiliates /> */}
-      {/* <PromotionsCarousel /> */}
-       <ProblemSolutionSection />
+      {/* <PromotionsCarousel />
+       <ProblemSolutionSection /> */}
       <HowWeWork />
        <AboutUs />
       <AmaPkgs />
