@@ -76,7 +76,7 @@ const AboutUs = () => {
   };
 
   return (
-    <section id="about-us" style={sectionStyle}>
+    <section id="about-us" padding="100" style={sectionStyle}>
 
       {/* BACKGROUND GLOW */}
       <div
